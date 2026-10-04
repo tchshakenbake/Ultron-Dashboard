@@ -23,7 +23,11 @@ export async function login(formData: FormData) {
   const supabase = createServerClient(url, anonKey, {
     cookies: {
       getAll: () => cookieStore.getAll(),
-      setAll: (items) => items.forEach(({ name, value, options }) => cookieStore.set(name, value, options)),
+      setAll: (items: Array<{
+        name: string;
+        value: string;
+        options?: Parameters<typeof cookieStore.set>[2];
+      }>) => items.forEach(({ name, value, options }) => cookieStore.set(name, value, options)),
     },
   });
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
