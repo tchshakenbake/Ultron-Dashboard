@@ -1,0 +1,33 @@
+{
+  "name": "ultron-command-center",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "test:security": "node scripts/test-security.cjs",
+    "test:schema": "node scripts/test-schema.cjs",
+    "test": "npm run test:security && npm run test:schema && npm run test:auth && npm run test:data-access && npm run test:stage6 && npm run test:stage7",
+    "test:auth": "node scripts/test-auth.cjs",
+    "test:data-access": "node scripts/test-data-access.cjs",
+    "test:stage6": "node scripts/test-stage6.cjs",
+    "test:stage7": "node scripts/test-stage7.cjs"
+  },
+  "dependencies": {
+    "next": "^15.5.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "@supabase/ssr": "^0.6.1",
+    "@supabase/supabase-js": "^2.57.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.5.0",
+    "typescript": "^5.0.0"
+  }
+}

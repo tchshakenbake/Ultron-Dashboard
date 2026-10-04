@@ -1,0 +1,15 @@
+const fs = require('node:fs');
+const assert = require('node:assert/strict');
+const api = fs.readFileSync('app/api/missions/route.ts', 'utf8');
+const page = fs.readFileSync('app/page.tsx', 'utf8');
+assert.match(api, /createOperatorServerClient/);
+assert.match(api, /from\('mission_tasks'\)/);
+assert.match(api, /Cache-Control.*private, no-store/s);
+assert.match(api, /task_data_unavailable/);
+assert.match(page, /fetch\('\/api\/missions'/);
+assert.match(page, /cache: 'no-store'/);
+assert.match(page, /setDataMode\('CONNECTED'\)/);
+assert.match(page, /setDataMode\('PREVIEW'\)/);
+assert.match(page, /Showing local preview data/);
+assert.match(page, /loadPersistentMissions\(\)/);
+console.log('Stage 6 static integration checks: 10/10 passed');
